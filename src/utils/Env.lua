@@ -17,10 +17,10 @@ Env = {};
 function Env.parse()
   local f = file.open(".env", "r");
 
-  while (true) do
+  while true do
     local line = f:readline();
 
-    if (line == nil) then
+    if line == nil then
       f:close();
       break;
     end
