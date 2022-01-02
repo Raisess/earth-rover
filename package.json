@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "nodemcu-tool": "^3.2.1"
+  }
+}
