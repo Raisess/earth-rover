@@ -8,6 +8,7 @@ ETR_FILE=init.lua
 FILES=$(ENV_FILE) \
 			$(SRC_DIR)/$(ETR_FILE) \
 			$(SRC_DIR)/Wifi.lua \
+			$(SRC_DIR)/utils/Debug.lua \
 			$(SRC_DIR)/utils/Env.lua \
 			$(SRC_DIR)/utils/Str.lua
 
