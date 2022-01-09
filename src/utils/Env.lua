@@ -15,6 +15,7 @@ end
 Env = {};
 
 function Env.parse()
+  local this_env = _Env;
   local f = file.open(".env", "r");
 
   while true do
@@ -26,10 +27,10 @@ function Env.parse()
     end
 
     local key_value = Str.split(line, "=");
-    _Env:set(key_value[1], key_value[2]);
+    this_env:set(key_value[1], key_value[2]);
   end
 
-  return _Env;
+  return this_env;
 end
 
 return Env;
