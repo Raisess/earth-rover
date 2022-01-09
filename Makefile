@@ -3,11 +3,11 @@ PORT=/dev/ttyUSB0
 
 ENV_FILE=./.env
 SRC_DIR=./src
-ETR_FILE=init.lua
 
 FILES=$(ENV_FILE) \
-			$(SRC_DIR)/$(ETR_FILE) \
-			$(SRC_DIR)/Wifi.lua \
+			$(SRC_DIR)/init.lua \
+			$(SRC_DIR)/modules/Pin.lua \
+			$(SRC_DIR)/modules/Wifi.lua \
 			$(SRC_DIR)/utils/Debug.lua \
 			$(SRC_DIR)/utils/Env.lua \
 			$(SRC_DIR)/utils/Str.lua
@@ -25,7 +25,7 @@ upload:
 	$(NMCUT) upload --port=$(PORT) $(FILES)
 
 run:
-	$(NMCUT) run $(ETR_FILE)
+	$(NMCUT) run init.lua
 
 fun:
 	make upload
