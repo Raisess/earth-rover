@@ -15,17 +15,18 @@ else
   Debug.log("WIFI", "Network status", "not connected!");
 end
 
-local red_led = Pin.new(1, Pin.modes.OUTPUT);
-local green_led = Pin.new(2, Pin.modes.OUTPUT);
-local blue_led = Pin.new(3, Pin.modes.OUTPUT);
+local loop = 3;
+local led = Pin.new(1, Pin.modes.OUTPUT);
 
-while true do
-  red_led:high();
-  green_led:high();
-  blue_led:high();
+while loop > 0 do
+  if led:status() then
+    Debug.log("Pin", "led status", "high!");
+    led:low();
+  else
+    Debug.log("Pin", "led status", "low!");
+    led:high();
+  end
+
   tmr.delay(1000000);
-  red_led:low();
-  green_led:low();
-  blue_led:low();
-  tmr.delay(1000000);
+  loop = loop - 1;
 end

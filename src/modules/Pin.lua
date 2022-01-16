@@ -1,23 +1,29 @@
 local _Pin = {
-  pin = 0,
-  mode = Pin.modes.OUTPUT,
-  is_high = false,
+  _pin = 0,
+  _mode = nil,
+  _is_high = false,
 };
 
 function _Pin:high()
-  gpio.write(self.pin, gpio.HIGH);
-  self.is_high = true;
+  gpio.write(self._pin, gpio.HIGH);
+  self._is_high = true;
 end
 
 function _Pin:low()
-  gpio.write(self.pin, gpio.LOW);
-  self.is_high = false;
+  gpio.write(self._pin, gpio.LOW);
+  self._is_high = false;
 end
 
 function _Pin:read()
-  if self.mode == Pin.modes.INPUT then
-    return gpio.read(self.pin);
+  if self._mode == gpio.INPUT then
+    return gpio.read(self._pin);
   end
+
+  return nil;
+end
+
+function _Pin:status()
+  return self._is_high;
 end
 
 Pin = {
@@ -29,10 +35,10 @@ Pin = {
 
 function Pin.new(pin, mode)
   local this_pin = _Pin;
-  this_pin.pin = pin;
-  this_pin.mode = mode;
+  this_pin._pin = pin;
+  this_pin._mode = mode;
 
-  gpio.mode(this_pin.pin, this_pin.mode);
+  gpio.mode(this_pin._pin, this_pin._mode);
 
   return this_pin;
 end
