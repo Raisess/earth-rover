@@ -14,9 +14,9 @@ end
 
 Env = {};
 
-function Env.parse()
+function Env.parse(env_file)
   local this_env = _Env;
-  local f = file.open(".env", "r");
+  local f = file.open(env_file or ".env", "r");
 
   while true do
     local line = f:readline();
